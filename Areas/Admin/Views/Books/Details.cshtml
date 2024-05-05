@@ -1,0 +1,110 @@
+﻿@model BookShop.Models.Book
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<div class="row">
+    <div class="col-md-5 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <img src="~/Books/@Html.DisplayFor(model => model.Image)" alt="ImageBook" style="width:370px;">                
+                @* <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
+                    <div class="text-md-center text-xl-left">
+                        <h4 class="mb-1">Description</h4>
+                        <p class="text-muted mb-0">@Html.DisplayFor(model => model.Description)</p>
+                    </div>
+                </div> *@                                
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex flex-row justify-content-between">
+                    <h2 class="card-title mb-1">@Html.DisplayFor(model => model.Name)</h2>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="preview-list">                            
+                            <div class="preview-item border-bottom">
+                                <div class="preview-item-content d-sm-flex flex-grow">
+                                    <div class="flex-grow">
+                                        <h3 class="preview-subject">@Html.DisplayFor(model => model.Author) (Author)</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="preview-item border-bottom">
+                                <div class="preview-item-content d-sm-flex flex-grow">
+                                    <div class="flex-grow">
+                                        <h3 class="preview-subject"> @String.Format("{0:0,0}", @Model.UnitPrice) đ</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="preview-item border-bottom">
+                                <div class="preview-item-content d-sm-flex flex-grow">
+                                    <div class="flex-grow">
+                                        <h6 class="preview-subject">Dimensions: @Html.DisplayFor(model => model.Length) x @Html.DisplayFor(model => model.Width) cm</h6>
+                                    </div>
+                                    <div class="flex-grow">
+                                        <h6 class="preview-subject">Pages: @Html.DisplayFor(model => model.Pages)</h6>
+                                    </div>
+                                </div>
+                            </div>                                                        
+                            <div class="preview-item border-bottom">
+                                <div class="preview-item-content d-sm-flex flex-grow">
+                                    <div class="flex-grow">
+                                        <h6 class="preview-subject">Quantity: @Html.DisplayFor(model => model.Quantity)</h6>
+                                    </div>
+                                    <div class="flex-grow">
+                                        <h6 class="preview-subject">Discount: @Html.DisplayFor(model => model.Discount)</h6>
+                                    </div>
+                                </div>
+                            </div>                            
+                            <div class="preview-item border-bottom">
+                                <div class="preview-item-content d-sm-flex flex-grow">
+                                    <div class="flex-grow">                                        
+                                        <h6 class="preview-subject">Available @Html.DisplayFor(model => model.Available)</h6>                                        
+                                    </div>
+                                    <div class="flex-grow">
+                                        <h6 class="preview-subject">Special @Html.DisplayFor(model => model.Special)</h6>
+                                    </div>
+                                    <div class="flex-grow">
+                                        <h6 class="preview-subject">Latest @Html.DisplayFor(model => model.Latest)</h6>
+                                    </div>                                    
+                                </div>
+                            </div>                          
+                            <div class="preview-item border-bottom">
+                                <div class="preview-item-content d-sm-flex flex-grow">
+                                    <div class="flex-grow">
+                                        <h6 class="preview-subject">Category: @Html.DisplayFor(model => model.Category.Name)</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="preview-item border-bottom">
+                                <div class="preview-item-content d-sm-flex flex-grow">
+                                    <div class="flex-grow">
+                                        <h6 class="preview-subject">Supplier: @Html.DisplayFor(model => model.Supplier.Name)</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="preview-item border-bottom">
+                                <div class="preview-item-content d-sm-flex flex-grow">
+                                    <div class="flex-grow">
+                                        <h6 class="preview-subject">@Html.DisplayFor(model => model.Description)</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+<div class="mr-auto text-sm-right pt-2 pt-sm-0">
+    <a type="button" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-danger btn-icon-text">Book Edit</a>
+    <a type="button" asp-action="ListBook" class="btn btn-outline-success btn-icon-text">Back To List</a>    
+</div>
+     
