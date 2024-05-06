@@ -9,18 +9,22 @@ public partial class Book
 {
     [Key]
     public int Id { get; set; }
-    [Required]
+    [Required(ErrorMessage = "Name is required!")]
     public string Name { get; set; }
-    [Required]
+
+    [Required(ErrorMessage = "Author is required!")]
     public string Author { get; set; }
-    [Required]
+
+    [Required(ErrorMessage = "Length is required!")]
     public int Length { get; set; }
-    [Required]
+
+    [Required(ErrorMessage = "Width is required!")]
     public int Width { get; set; }
-    [Required]
+
+    [Required(ErrorMessage = "Pages is required!")]
     public int Pages { get; set; }
 
-    [Required(ErrorMessage = "Nhập giá sản phẩm")]
+    [Required(ErrorMessage = "UnitPrice is required!")]
     public double UnitPrice { get; set; }
 
     public string? Image { get; set; }
@@ -33,7 +37,7 @@ public partial class Book
 
     public string? SupplierId { get; set; }
 
-    [Required(ErrorMessage = "Nhập số lượng sản phẩm")]
+    [Required(ErrorMessage = "Quantity is required!")]
     public int Quantity { get; set; }
 
     public double Discount { get; set; }

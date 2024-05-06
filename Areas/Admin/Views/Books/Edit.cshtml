@@ -5,6 +5,12 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@if (!string.IsNullOrEmpty(TempData["Message"] as string))
+{
+    <div id="message" class="alert alert-danger">@TempData["Message"]</div>
+}
+
 <h1>Edit</h1>
 
 <div class="col-12 grid-margin">
@@ -172,4 +178,15 @@
         </div>
     </div>
 </div>
-    
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        // Ẩn thông báo sau 10 giây
+        setTimeout(function () {
+            document.getElementById('message').style.display = 'none';
+        }, 10000);
+    </script>
+}

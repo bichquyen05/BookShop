@@ -25,7 +25,7 @@ namespace TiemSachChill.Areas.Admin.Controllers
             var books = _context.Books.Include(b => b.Category).Include(b => b.Supplier);
             return View(await books.ToListAsync());
         }
-
+        
         // GET: Books/Details/5
         [Route("Details")]
         [HttpGet]
@@ -100,10 +100,12 @@ namespace TiemSachChill.Areas.Admin.Controllers
                         throw;
                     }
                 }
+                TempData["Message"] = "Update successful!";
                 return RedirectToAction("ListBook");
             }
             ViewData["Categories"] = new SelectList(_context.Categories, "Id", "Name", book.CategoryId);
             ViewData["Suppliers"] = new SelectList(_context.Suppliers, "Id", "Name", book.SupplierId);
+            TempData["Message"] = "Update Failed!";
             return View(book);
         }
 
@@ -128,10 +130,12 @@ namespace TiemSachChill.Areas.Admin.Controllers
             {
                 _context.Add(book);
                 await _context.SaveChangesAsync();
+                TempData["Message"] = "Create successful!";
                 return RedirectToAction("ListBook");
             }
             ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", book.CategoryId);
             ViewBag.Suppliers = new SelectList(_context.Suppliers, "Id", "Name", book.SupplierId);
+            TempData["Message"] = "Create Failed!";
             return View(book);
         }
 
@@ -149,7 +153,7 @@ namespace TiemSachChill.Areas.Admin.Controllers
                 _context.Books.Remove(book);
                await _context.SaveChangesAsync();
             }
-            TempData["Message"] = "Deleted successfully";
+            TempData["Message"] = "Deleted successfully!";
             return RedirectToAction("ListBook");
         }
         //[Route("Delete")]
