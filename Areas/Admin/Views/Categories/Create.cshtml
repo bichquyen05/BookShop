@@ -1,0 +1,46 @@
+﻿@model BookShop.Models.Category
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@if (!string.IsNullOrEmpty(TempData["Message"] as string))
+{
+    <div class="alert alert-danger">@TempData["Message"]</div>
+}
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Category Info</h4>
+            <form class="forms-sample" method="post" asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group row">
+                    <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Name</label>
+                    <div class="col-sm-9">
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>                        
+                    </div>
+                </div> 
+                <div class="mr-auto text-sm-right pt-2 pt-sm-0">
+                    <input type="submit" value="Create" class="btn btn-outline-danger btn-icon-text" />
+                    <a type="button" asp-action="CategoryList" class="btn btn-outline-success btn-icon-text">Back To List</a>
+                </div>                
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        // Ẩn thông báo sau 10 giây
+        setTimeout(function () {
+            document.getElementById('message').style.display = 'none';
+        }, 10000);
+    </script>
+}
