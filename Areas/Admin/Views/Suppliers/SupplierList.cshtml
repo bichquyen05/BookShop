@@ -1,0 +1,83 @@
+﻿@model IEnumerable<BookShop.Models.Supplier>
+@{
+    ViewData["Title"] = "SupplierList";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@if (!string.IsNullOrEmpty(TempData["Message"] as string))
+{
+    <div id="message" class="alert alert-danger">@TempData["Message"]</div>
+}
+
+<div class="col-lg-12 grid-margin-center stretch-card-center">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex flex-row justify-content-between">
+                <h4 class="card-title mb-1">Supplier List</h4>
+                <p>
+                    <a type="button" asp-action="Create" class="btn btn-outline-primary btn-icon-text">
+                        <i class="mdi mdi-plus-circle-outline"></i> Create New
+                    </a>
+                </p>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Id)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Email)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Phone)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Phone)
+                                </td>
+                                <td>
+                                    <a type="button" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-success btn-icon-text">
+                                        <i class="mdi mdi-alert btn-icon-prepend"></i> Edit
+                                    </a>
+                                    <a type="button" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-icon-text">
+                                        <i class="mdi mdi-delete-forever"></i> Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // Ẩn thông báo sau 10 giây
+    setTimeout(function () {
+        document.getElementById('message').style.display = 'none';
+    }, 10000);
+</script>

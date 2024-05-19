@@ -1,17 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BookShop.Models;
 
 public partial class Supplier
 {
-    public string Id { get; set; } = null!;
+    [Key]
+    [Required(ErrorMessage = "Id is required!")]
+    public string Id { get; set; }
 
-    public string Name { get; set; } = null!;
+    [Required(ErrorMessage = "Name is required!")]
+    public string Name { get; set; }
 
-    public string Email { get; set; } = null!;
+    [Required(ErrorMessage = "Email is required!")]
+    public string Email { get; set; }
 
-    public string Phone { get; set; } = null!;
+    [Required(ErrorMessage = "Phone is required!")]
+    public string Phone { get; set; }
 
     public virtual ICollection<Book> Books { get; set; } = new List<Book>();
 }
