@@ -731,6 +731,7 @@ ol {
 	display: flex;
 	align-items: center;
 	padding-left: 75px;
+	margin-top: 10px;
 }
 
 .hero__text span {
@@ -1705,6 +1706,12 @@ ol {
 	color: #dd2222;
 	font-weight: 600;
 	margin-bottom: 15px;
+}
+.product__details__text .product__details__price span {	
+	text-decoration: line-through;
+	color: #6f6f6f;
+	font-size: 18px;
+	margin-left: 10px;
 }
 
 .product__details__text p {

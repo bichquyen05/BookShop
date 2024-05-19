@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<BookShop.ViewModels.Menu>
 @foreach (var item in Model)
 {
-        <li>
-            <div class="d-flex justify-content-between fruite-name">
-                <a href="#">@item.Name</a>            
-            </div>
-        </li>
+    <li>
+        <div class="d-flex justify-content-between fruite-name">
+        <a asp-controller="Shop" asp-action="Shop" asp-route-categoryId="@item.Id">@item.Name</a>
+    </div>
+    </li>
 }

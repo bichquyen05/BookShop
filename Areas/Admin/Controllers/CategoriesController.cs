@@ -63,7 +63,7 @@ namespace BookShop.Areas.Admin.Controllers
             var category = await _context.Categories.FindAsync(id);
             if (category == null)
             {
-                TempData["Message"] = "Category is not exist!";
+                TempData["Message"] = "This category does not exist!";
             }
             return View(category);
         }
@@ -75,7 +75,7 @@ namespace BookShop.Areas.Admin.Controllers
         {
             if(id!=category.Id)
             {
-                TempData["Message"] = "Category is not exist!";
+                TempData["Message"] = "Find not found!";
             }
             var existingTheLoai = await _context.Categories.FirstOrDefaultAsync(t => t.Id != id && t.Name == category.Name);
             if(existingTheLoai != null)
@@ -109,7 +109,7 @@ namespace BookShop.Areas.Admin.Controllers
 
             if (categoryHasBooks)
             {
-                TempData["Message"] = "This category cannot be deleted because there are books in this category!";
+                TempData["Message"] = "This category cannot be deleted because there are books in it!";
                 return RedirectToAction("CategoryList");
             }
 
@@ -117,14 +117,14 @@ namespace BookShop.Areas.Admin.Controllers
             var categoryToDelete = await _context.Categories.FindAsync(id);
             if (categoryToDelete == null)
             {
-                TempData["Message"] = "No categories found to delete!";
+                TempData["Message"] = "No category was found to be deleted!";
                 return RedirectToAction("CategoryList");
             }
 
             _context.Categories.Remove(categoryToDelete);
             await _context.SaveChangesAsync();
 
-            TempData["Message"] = "The category has been successfully deleted!";
+            TempData["Message"] = "Delete successful!";
             return RedirectToAction("CategoryList");
         }
 

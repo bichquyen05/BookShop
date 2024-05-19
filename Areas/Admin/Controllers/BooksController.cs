@@ -145,6 +145,7 @@ namespace TiemSachChill.Areas.Admin.Controllers
         {
             if(id == null)
             {
+                TempData["Message"] = "No book was found to be deleted!";
                 return NotFound();
             }
             var book = await _context.Books.Include(b => b.Category).Include(b => b.Supplier).FirstOrDefaultAsync(m => m.Id == id);
@@ -153,23 +154,9 @@ namespace TiemSachChill.Areas.Admin.Controllers
                 _context.Books.Remove(book);
                await _context.SaveChangesAsync();
             }
-            TempData["Message"] = "Deleted successfully!";
+            TempData["Message"] = "Delete successful!";
             return RedirectToAction("ListBook");
-        }
-        //[Route("Delete")]
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{            
-        //    var book = await _context.Books.FindAsync(id);
-        //    if (book!=null)
-        //    {
-        //        _context.Books.Remove(book);
-        //    }
-        //    await _context.SaveChangesAsync();
-        //    TempData["Message"] = "Deleted successfully";
-        //    return RedirectToAction("ListBook");
-        //}
+        }        
         private bool BookExists(int id)
         {
             return _context.Books.Any(e => e.Id == id);
