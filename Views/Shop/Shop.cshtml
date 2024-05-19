@@ -1,0 +1,35 @@
+﻿@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<Book>
+
+@{
+    ViewData["Title"] = "Shop";
+    Layout = "~/Views/Shared/_Shop.cshtml";
+}
+
+<!-- Breadcrumb Section Begin -->
+@section breadcrumb{
+    <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>BOOKSHOP</h2>
+                        <div class="breadcrumb__option">
+                            <a href="~/">Trang chủ</a>
+                            <span>Cửa hàng</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+<!-- Breadcrumb Section End -->
+<!-- Product Section Begin -->
+<section class="product spad">
+    <div class="container">
+        <div class="row">                                    
+            @await Html.PartialAsync("Books", Model)
+        </div>
+    </div>
+</section>

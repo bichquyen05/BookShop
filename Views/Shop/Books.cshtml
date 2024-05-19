@@ -1,0 +1,41 @@
+﻿@* @model IEnumerable<BookShop.Models.Book> *@
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<Book>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="product__item">
+                <div class="product__item__pic set-bg" data-setbg=@Url.Content("../Books/" + item.Image)>
+                    <ul class="product__item__pic__hover">
+                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                        <li><a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.Id" asp-route-qty="1"><i class="fa fa-shopping-cart"></i></a></li>
+                    </ul>
+                </div>
+                <div class="product__item__text">
+                    <h6><a asp-controller="Shop" asp-action="BookDetail" asp-route-id="@item.Id">@item.Name</a></h6>
+                    @if(item.Discount != 0)
+                    {
+                        <h5>@String.Format("{0:0,0}", item.UnitPrice - (item.Discount * item.UnitPrice)) đ</h5>
+                    }else{
+                        <h5>@String.Format("{0:0,0}", item.UnitPrice)đ</h5>
+                    }                    
+                </div>
+            </div>
+        </div>
+    }
+</div>               
+<div class="product__pagination">
+    @for (int i = 1; i <= Model.PageCount; i++)
+    {
+        <a href="@Url.Action("Shop", new { page = i })">@i</a>
+    }
+    @if (Model.PageNumber < Model.PageCount)
+    {
+        <a href="@Url.Action("Shop", new { page = Model.PageNumber + 1 })" class="next-page">
+            <i class="fa fa-long-arrow-right"></i>
+        </a>
+    }
+    </div>
+</div>

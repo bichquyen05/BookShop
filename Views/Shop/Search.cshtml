@@ -1,0 +1,6 @@
+﻿@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<Book>
+@{
+    Layout = "~/Views/Shared/_Shop.cshtml";
+}
+@await Html.PartialAsync("Books", Model)
